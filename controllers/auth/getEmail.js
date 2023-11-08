@@ -4,10 +4,10 @@ export default async function (req, res, next) {
     try {
 
         const finded = await User.find({ email: req.query.email }).select('-password')
-        if (!finded) {
+        if (finded.length==0) {
             return res.status(200).json({
                 success: true,
-                message: 'User not Finded'
+                error: 'User not Finded'
             })
         }
         return res.json({

@@ -8,7 +8,7 @@ export default async function (req,res,next) {
         }
         return res.json({
             success:false,
-            message:'Incorrect Password!'
+            error:'Incorrect Password!'
         })
     
 }
