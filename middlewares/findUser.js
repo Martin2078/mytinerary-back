@@ -3,7 +3,6 @@ import User from '../models/User.js'
 export default async function (req,res,next) {
     try {
         const finded =await User.find({email:req.body.email})
-        console.log(finded.length);
         if (finded.length==0) {
             return res.json({
                 success:false,
