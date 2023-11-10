@@ -16,7 +16,6 @@ const itinerarySchema=new Schema({
         description:{type:String,required:true},
         photo:[{type:String,required:true}],    
     }],
-    ubication:{type:String,required:true}
 },{timestamps:true})
 
 let Itinerary=model(collection,itinerarySchema)
