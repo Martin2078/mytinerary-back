@@ -8,7 +8,6 @@ const itinerarySchema=new Schema({
     title:{type:String,required:true},
     price:[{type:Number,required:true}],
     duration:{type:Number},
-    comments:[{type:Types.ObjectId,ref:'comments'}],
     hashtags:[{type:String,required:true}],
     activities:[{
         name:{type:String,required:true},

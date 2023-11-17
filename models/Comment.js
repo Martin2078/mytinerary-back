@@ -13,7 +13,6 @@ const commentSchema=new Schema({
     likes:{type:Number,default:0},
     dislikes:{type:Number,default:0},
     photo:[{type:String,required:false}],
-    comments:[{type:Types.ObjectId,ref:'comments'}]
 },{timestamps:true})
 
 let Comment = model(collection,commentSchema)
