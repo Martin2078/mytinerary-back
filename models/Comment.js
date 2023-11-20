@@ -10,8 +10,8 @@ const commentSchema=new Schema({
         value:{type:Number,required:true},
         textValue:{type:String,required:true}
     },
-    likes:{type:Number,default:0},
-    dislikes:{type:Number,default:0},
+    likes:[{type:Types.ObjectId}],
+    dislikes:[{type:Types.ObjectId}],
     photo:[{type:String,required:false}],
 },{timestamps:true})
 

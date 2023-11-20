@@ -1,4 +1,4 @@
-import { model,Schema } from "mongoose";
+import { model,Schema, Types } from "mongoose";
 
 let collection = 'users'
 const userSchema = new Schema({
@@ -8,7 +8,8 @@ const userSchema = new Schema({
     password:{type:String,required:true},
     photo:{type:String,required:false},
     role:{type:Number,default:0},
-    online:{type:Boolean,default:false}
+    online:{type:Boolean,default:false},
+    favorites:[{type:Types.ObjectId}]
 },{timestamps:true})
 
 const User = model(collection,userSchema)

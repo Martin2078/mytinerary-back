@@ -8,7 +8,7 @@ const router=express.Router()
 
 router.get('/:id',getAll)
 router.post('/',passport.authenticate('jwt',{session:false}),createComment)
-router.put('/like/:id',passport.authenticate('jwt',{session:false}),likeComment)
-router.put('/dislike/:id',passport.authenticate('jwt',{session:false}),dislikeComment)
+router.put('/like',passport.authenticate('jwt',{session:false}),likeComment)
+router.put('/dislike',passport.authenticate('jwt',{session:false}),dislikeComment)
 
 export default router
