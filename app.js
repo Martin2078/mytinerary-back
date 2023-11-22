@@ -5,6 +5,7 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import fileUpload from 'express-fileupload';
 import cors from 'cors'
 
 import { __dirname } from './utils/utils.js';
@@ -17,6 +18,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(fileUpload())
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
