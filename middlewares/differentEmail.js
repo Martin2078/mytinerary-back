@@ -5,7 +5,7 @@ export default async function(req,res,next){
     if (notFinded.length<1) {
         return next()
     }
-    return res.status(400).json({
+    return res.json({
         success:false,
         error:'There is already an account with that email!'
     })

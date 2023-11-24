@@ -8,10 +8,6 @@ const registerValidator=Joi.object({
     password: Joi.string().required().messages({
         'string.required':'Password required!',
     }),
-    photo: Joi.string().uri().required().messages({
-        'string.required':'Photo required!',
-        'string.uri':'Photo must be a string!'
-    }),
     name: Joi.string().required().messages({
         'string.required':'Name required!',
     }),

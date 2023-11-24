@@ -9,7 +9,7 @@ const userSchema = new Schema({
     photo:{type:String,required:false},
     role:{type:Number,default:0},
     online:{type:Boolean,default:false},
-    favorites:[{type:Types.ObjectId}]
+    favorites:[{type:Types.ObjectId,ref:'itineraries'}]
 },{timestamps:true})
 
 const User = model(collection,userSchema)

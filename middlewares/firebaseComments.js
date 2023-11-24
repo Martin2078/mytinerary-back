@@ -24,6 +24,13 @@ export default async function firebaseComments(req, res, next) {
     const storage = getStorage(app)
     
     try {
+        req.body.valoration={}
+        req.body.valoration.value=req.body.valorationValue
+        req.body.valoration.textValue=req.body.valorationTextValue
+        if (req.files==null) {
+            console.log("entro");
+            next()
+        }
         let commentPhotos=[]
         for (const img of req.files.photo) {
             const storageRef = ref(storage, `commentsPhotos/${v4()}`)
@@ -36,9 +43,6 @@ export default async function firebaseComments(req, res, next) {
             commentPhotos.push(url)
         }
         req.body.photo=commentPhotos
-        req.body.valoration={}
-        req.body.valoration.value=req.body.valorationValue
-        req.body.valoration.textValue=req.body.valorationTextValue
         console.log(req.body);
         return next()
         

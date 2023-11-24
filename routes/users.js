@@ -12,6 +12,7 @@ import hashPassword from '../middlewares/hashPassword.js';
 import register from '../controllers/auth/register.js';
 import passport from '../middlewares/passport.js';
 import signOut from '../controllers/auth/signOut.js'
+import firebaseUserPhoto from '../middlewares/firebaseUserPhoto.js';
 
 
 const router = express.Router();
@@ -19,7 +20,7 @@ const router = express.Router();
 router.get('/',getEmail)
 router.post('/SignIn',checkPassword,createToken,signIn)
 router.post('/SignOut',passport.authenticate('jwt',{session:false}),signOut)
-router.post('/Register',validator(registerValidator),differentEmail,hashPassword,register)
+router.post('/Register',validator(registerValidator),differentEmail,firebaseUserPhoto,hashPassword,register)
 
 
 export default router;
