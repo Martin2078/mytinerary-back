@@ -4,15 +4,15 @@ import bcryptjs  from 'bcryptjs'
 export default async function (req,res,next) {
         const userFinded=await User.findOne({email:req.body.email})
         if (!userFinded) {
-            return res.json({
+            return res.status(500).json({
                 success:false,
-                message:'Incorrect email!'
+                error:'Incorrect email!'
             })
         }
         if (bcryptjs.compareSync(req.body.password,userFinded.password)) {
             return next()
         }
-        return res.json({
+        return res.status(500).json({
             success:false,
             error:'Incorrect Password!'
         })

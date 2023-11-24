@@ -3,8 +3,9 @@ import City from "../../models/City.js";
 export default async (req, res) => {
     try {
         let { id } = req.params
-        let city = await City.findById(id)
-
+        let city = await City.findByIdAndUpdate(id,{
+            popularity:popularity+1
+        },{new:true})
         return res.json({
             success: true,
             response: city,
