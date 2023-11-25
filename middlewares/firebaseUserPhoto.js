@@ -24,6 +24,9 @@ export default async function firebaseUserPhoto(req, res, next) {
   const storage = getStorage(app)
   const storageRef = ref(storage, `usersPhotos/${v4()}`)
   try {
+    if (req.files==undefined) {
+      return next()
+    }
     const userPhoto=req.files.photo.data
     const userPhotoMetadata={
       contentType:req.files.photo.mimetype,

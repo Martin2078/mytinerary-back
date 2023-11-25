@@ -14,8 +14,6 @@ const registerValidator=Joi.object({
     surname: Joi.string().required().messages({
         'string.required':'Surname required!',
     }),
-    date: Joi.date().required().messages({
-        'date.required':'Date required!',
-    }),
+    photo: Joi.any()
 })
 export default registerValidator

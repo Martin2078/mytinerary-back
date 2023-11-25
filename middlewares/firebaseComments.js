@@ -28,7 +28,6 @@ export default async function firebaseComments(req, res, next) {
         req.body.valoration.value=req.body.valorationValue
         req.body.valoration.textValue=req.body.valorationTextValue
         if (req.files==null) {
-            console.log("entro");
             next()
         }
         let commentPhotos=[]
