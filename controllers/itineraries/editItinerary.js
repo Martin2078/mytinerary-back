@@ -21,6 +21,9 @@ export default async(req,res,next)=>{
     if (req.body.activities) {
         itineraryEdit.activities=req.body.activities
     }
+    if (req.body.cityId) {
+        itineraryEdit.cityId=req.body.cityId
+    }
     await itineraryEdit.save()
 
     res.json({

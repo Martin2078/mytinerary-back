@@ -27,7 +27,6 @@ export default async function firebaseItineraryActivities(req, res, next) {
     let activitiesArray = []
     try {
         if (req.files==undefined) {
-            console.log("entre act");
             return next()
         }
         do {

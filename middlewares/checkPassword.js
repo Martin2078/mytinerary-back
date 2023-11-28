@@ -6,7 +6,7 @@ export default async function (req,res,next) {
         if (!userFinded) {
             return res.status(500).json({
                 success:false,
-                error:'Incorrect email!'
+                error:'There is no user with that email!'
             })
         }
         if (bcryptjs.compareSync(req.body.password,userFinded.password)) {
