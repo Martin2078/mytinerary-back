@@ -24,6 +24,9 @@ export default async function firebaseItinerary(req, res, next) {
   const storage = getStorage(app)
   const storageRef = ref(storage, `itinerariesPhotos/${v4()}`)
   try {
+    if (req.body.photo || req.files==undefined) {
+      return next()
+    }
     const itineraryPhoto=req.files.photo.data
     const itineraryPhotoMetadata={
       contentType:req.files.photo.mimetype,
