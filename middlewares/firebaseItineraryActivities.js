@@ -26,6 +26,8 @@ export default async function firebaseItineraryActivities(req, res, next) {
     let keyName;
     let activitiesArray = []
     try {
+        console.log(req.body);
+        console.log(req.files);
         if (req.files==undefined) {
             return next()
         }
@@ -40,30 +42,36 @@ export default async function firebaseItineraryActivities(req, res, next) {
             activity.name = req.body[keyName + `name`]
             activity.description = req.body[keyName + `description`]
             activity.ubication = req.body[keyName + `ubication`]
-            if (req.files[keyName + `photo`].length>1) {
-                for (const img of req.files[keyName + `photo`]) {
-                    const storageRef = ref(storage, `activitiesPhotos/${v4()}`)
-                    let archivo = img.data
-                    const activityPhotoMetadata = {
-                        contentType: img.mimetype,
-                        size: img.size
+            if (req.files[keyName + `photo`]) {
+                if (req.files[keyName + `photo`].length>1) {
+                    for (const img of req.files[keyName + `photo`]) {
+                        const storageRef = ref(storage, `activitiesPhotos/${v4()}`)
+                        let archivo = img.data
+                        const activityPhotoMetadata = {
+                            contentType: img.mimetype,
+                            size: img.size
+                        }
+                        await uploadBytes(storageRef, archivo, activityPhotoMetadata)
+                        const url = await getDownloadURL(storageRef)
+                        activity.photo.push(url)
                     }
+                }else{
+                    let archivo=req.files[keyName + `photo`].data
+                    const activityPhotoMetadata = {
+                        contentType: req.files[keyName + `photo`].mimetype,
+                        size: req.files[keyName + `photo`].size
+                    }
+                    const storageRef = ref(storage, `activitiesPhotos/${v4()}`)
                     await uploadBytes(storageRef, archivo, activityPhotoMetadata)
                     const url = await getDownloadURL(storageRef)
                     activity.photo.push(url)
-                }
+                }  
             }else{
-                let archivo=req.files[keyName + `photo`].data
-                const activityPhotoMetadata = {
-                    contentType: req.files[keyName + `photo`].mimetype,
-                    size: req.files[keyName + `photo`].size
+                for (const img of req.body[keyName + `photo`]) {
+                    activity.photo.push(img)
                 }
-                const storageRef = ref(storage, `activitiesPhotos/${v4()}`)
-                await uploadBytes(storageRef, archivo, activityPhotoMetadata)
-                const url = await getDownloadURL(storageRef)
-                activity.photo.push(url)
             }
-
+            console.log(activity);
             activitiesArray.push(activity)
             i = i + 1
         } while (req.body[`activity${i}name`] !== undefined)
