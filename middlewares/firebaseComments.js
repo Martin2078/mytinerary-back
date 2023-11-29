@@ -42,7 +42,6 @@ export default async function firebaseComments(req, res, next) {
             commentPhotos.push(url)
         }
         req.body.photo=commentPhotos
-        console.log(req.body);
         return next()
         
     } catch (error) {

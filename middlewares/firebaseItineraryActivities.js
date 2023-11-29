@@ -26,8 +26,6 @@ export default async function firebaseItineraryActivities(req, res, next) {
     let keyName;
     let activitiesArray = []
     try {
-        console.log(req.body);
-        console.log(req.files);
         if (req.files==undefined) {
             return next()
         }
@@ -71,7 +69,6 @@ export default async function firebaseItineraryActivities(req, res, next) {
                     activity.photo.push(img)
                 }
             }
-            console.log(activity);
             activitiesArray.push(activity)
             i = i + 1
         } while (req.body[`activity${i}name`] !== undefined)

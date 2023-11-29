@@ -15,7 +15,7 @@ export default async (req,res)=>{
             cityId,
             userId
         })
-        console.log("si");
+       
         return res.status(200).json({
             success:true,
             message: 'Itinerary Created!'
