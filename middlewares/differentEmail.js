@@ -7,6 +7,6 @@ export default async function(req,res,next){
     }
     return res.status(400).json({
         success:false,
-        error:'There is already an account with that email!'
+        error:'Your are already registered!'
     })
 }

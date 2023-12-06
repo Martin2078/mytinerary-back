@@ -14,14 +14,16 @@ import passport from '../middlewares/passport.js';
 import signOut from '../controllers/auth/signOut.js'
 import firebaseUserPhoto from '../middlewares/firebaseUserPhoto.js';
 import favoriteActions from '../controllers/auth/favoriteActions.js';
+import decodeJWT from '../middlewares/decodeJWT.js';
 
 
 const router = express.Router();
 
 router.get('/',getEmail)
 router.post('/SignIn',checkPassword,createToken,signIn)
+router.post('/GoogleSignIn',decodeJWT,createToken,signIn)
 router.post('/SignOut',passport.authenticate('jwt',{session:false}),signOut)
-router.post('/Register',validator(registerValidator),differentEmail,firebaseUserPhoto,hashPassword,register)
+router.post('/Register',decodeJWT,validator(registerValidator),differentEmail,firebaseUserPhoto,hashPassword,register)
 router.post('/favorites/:id',passport.authenticate('jwt',{session:false}),favoriteActions.addFavorite)
 router.delete('/favorites/:id',passport.authenticate('jwt',{session:false}),favoriteActions.deleteFavorite)
 

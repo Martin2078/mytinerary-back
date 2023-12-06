@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken"
 export default (req,res,next) =>{
-
     const {email}=req.body
 
     const token = jwt.sign(
